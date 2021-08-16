@@ -1,0 +1,127 @@
+{
+  "name": "otoge-showcase-layouts",
+  "version": "0.0.0",
+  "description": "",
+  "homepage": "",
+  "author": {
+    "name": "Cma",
+    "email": "chicchaima@gmail.com",
+    "url": ""
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "scripts": {
+    "autofix": "run-s autofix:*",
+    "autofix:browser": "eslint --fix --ext .ts,.tsx src/browser",
+    "autofix:extension": "eslint --fix --ext .ts src/extension",
+    "build": "webpack",
+    "dev": "webpack --watch --mode=development",
+    "schema-types": "nodecg schema-types -o src/nodecg/generated schemas",
+    "schema-types:lib": "nodecg schema-types -o src/nodecg/generated/lib schemas/lib"
+  },
+  "nodecg": {
+    "compatibleRange": "^1.1.1",
+    "dashboardPanels": [
+      {
+        "name": "current",
+        "title": "現在の企画",
+        "width": 4,
+        "file": "CurrentControl.html",
+        "headerColor": "#bcbcff"
+      },
+      {
+        "name": "programs",
+        "title": "Programs",
+        "width": 4,
+        "file": "Programs.html",
+        "headerColor": "#bcbcff"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "Setup.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "Game1.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "Game1vertical.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "Game2.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "Game3to4.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "Omnibar.html",
+        "width": 1920,
+        "height": 50
+      }
+    ]
+  },
+  "repository": "https://github.com/cma2819/otoge-showcase-layouts.git",
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "@material-ui/core": "^4.12.2",
+    "@material-ui/icons": "^4.11.2",
+    "axios": "^0.21.1",
+    "globby": "^11.0.3",
+    "googleapis": "^82.0.0",
+    "lodash.clone": "^4.5.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-transition-group": "^4.4.2",
+    "styled-components": "^5.3.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/globby": "^9.1.0",
+    "@types/html-webpack-plugin": "^3.2.5",
+    "@types/lodash.clone": "^4.5.6",
+    "@types/node": "^15.6.2",
+    "@types/react": "^17.0.9",
+    "@types/react-dom": "^17.0.6",
+    "@types/react-transition-group": "^4.4.2",
+    "@types/styled-components": "^5.1.11",
+    "@types/uuid": "^8.3.1",
+    "@types/webpack-merge": "^5.0.0",
+    "@types/webpack-node-externals": "^2.5.1",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "css-loader": "^6.2.0",
+    "eslint": "^7.27.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "html-webpack-plugin": "^5.3.1",
+    "nodecg-cli": "^7.0.0",
+    "style-loader": "^3.2.1",
+    "ts-loader": "^9.2.3",
+    "ts-node": "^10.0.0",
+    "ts-nodecg": "^0.3.1",
+    "typescript": "^4.3.2",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-merge": "^5.8.0",
+    "webpack-node-externals": "^3.0.0"
+  }
+}
