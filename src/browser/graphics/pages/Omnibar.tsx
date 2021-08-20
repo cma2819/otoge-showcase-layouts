@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { ReplicantProvider } from '../../ReplicantProvider';
 import { Title } from '../components/Omnibar/Title';
+import { Clock } from '../components/Omnibar/Clock';
 
 const Container = styled.div`
   position: fixed;
@@ -15,7 +16,11 @@ const Container = styled.div`
   height: 50px;
   background-color: #222;
   display: grid;
+  grid-template-columns: auto 120px;
+  grid-template-rows: 1fr;
   justify-items: center;
+  font-size: 48px;
+  font-family: 'Iceland', 'Noto Sans JP', sans-serif, cursive;
 `;
 
 const App = () => {
@@ -23,6 +28,7 @@ const App = () => {
     <ReplicantProvider>
       <Container>
         <Title />
+        <Clock />
       </Container>
     </ReplicantProvider>
   );

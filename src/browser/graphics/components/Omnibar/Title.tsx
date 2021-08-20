@@ -1,16 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
-import styled from 'styled-components';
 import './fade.css';
 
 type ShowType = 'name'|'hashtag';
 const showTypes: ShowType[] = ['name', 'hashtag'];
 
 const CHANGE_INTERVAL_SEC = 30;
-
-const Container = styled.div`
-  font-family: 'Iceland', 'Noto Sans JP', sans-serif, cursive;
-`;
 
 export const Title = () => {
   const [ showTitle, setShowTitle ] = useState<ShowType>('name');
@@ -40,7 +35,7 @@ export const Title = () => {
         addEndListener={(node, done) => node.addEventListener('transitionend', done, false)}
         classNames='fade'
       >
-        <Container>
+        <div>
           {
             showTitle === 'name' && (
               <div>
@@ -55,7 +50,7 @@ export const Title = () => {
               </div>
             )
           }
-        </Container>
+        </div>
       </CSSTransition>
     </SwitchTransition>
   );

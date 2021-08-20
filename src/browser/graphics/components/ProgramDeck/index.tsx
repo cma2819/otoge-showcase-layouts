@@ -33,6 +33,11 @@ export const ProgramDeck = () => {
     return index >= currentIndex && index < currentIndex + 3;
   });
 
+  const deckStartAfter = decks.map((_, index) => {
+    return decks.filter((_, tIndex) => tIndex < index)
+      .reduce((currentSumOfSeconds, deck) => currentSumOfSeconds + deck.estimateRawSeconds + (10 * 60), 0);
+  });
+
   return (
     <Container>
       <SlotArea style={{
@@ -45,14 +50,16 @@ export const ProgramDeck = () => {
         )}
       </SlotArea>
       {
-        decks.map(deck => (
+        decks.map((deck, index) => (
           <SlotArea key={deck.pk}>
             <IconArea>
-              { deck.pk === replicant.surroundCurrentPk.current && (
-                <Icon className="fas fa-arrow-right"></Icon>
+              { index === 0 && (
+                <div>
+                  <Icon className="fas fa-arrow-right" />
+                </div>
               )}
             </IconArea>
-            <Slot program={deck} />
+            <Slot program={deck} secondsStartAfter={deckStartAfter[index]} />
           </SlotArea>
         ))
       }
