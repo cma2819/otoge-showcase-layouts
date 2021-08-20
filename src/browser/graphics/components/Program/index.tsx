@@ -71,7 +71,7 @@ export const Program = ({horizontal, views}: Props) => {
                 {
                   coops.map((player, index) => (
                     <CoopPlayer>
-                      <Nameplate player={player} key={`coop${index}`} isPlayer />
+                      <Nameplate player={player} index={views + index} key={`coop${index}`} isPlayer />
                     </CoopPlayer>
                   ))
                 }
