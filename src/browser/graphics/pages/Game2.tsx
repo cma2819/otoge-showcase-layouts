@@ -46,7 +46,7 @@ const App = () => {
     <ReplicantProvider>
       <Container>
         <ProgramArea>
-          <Program horizontal/>
+          <Program views={2} horizontal/>
         </ProgramArea>
         <Player1Area>
           <Player index={0} />

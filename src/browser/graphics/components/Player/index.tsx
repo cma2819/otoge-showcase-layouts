@@ -16,7 +16,7 @@ export const Player = ({index}: Props) => {
     <React.Fragment>
       {
         player && (
-          <Nameplate player={player} index={index} />
+          <Nameplate player={player} index={index} isPlayer />
         )
       }
     </React.Fragment>

@@ -4,6 +4,7 @@ import { Player } from '../../../../nodecg/generated/lib';
 
 type Props = {
   player: Player;
+  isPlayer?: boolean;
   isCommentator?: boolean;
   index?: number;
 }
@@ -39,14 +40,19 @@ const Border = styled.div`
   background-color: ${(props: BorderProps) => props.index !== undefined ? COLORS[props.index % (COLORS.length)] : '#f0f0f0'};
 `;
 
-export const Nameplate = ({player, isCommentator, index}: Props) => {
+export const Nameplate = ({player,isPlayer, isCommentator, index}: Props) => {
   return (
     <Container>
       <Border index={index} />
       <div>
         {
+          isPlayer && (
+            <Icon className="fas fa-gamepad" aria-hidden="true" />
+          )
+        }
+        {
           isCommentator && (
-            <Icon className="fas fa-headset" aria-hidden="true"></Icon>
+            <Icon className="fas fa-headset" aria-hidden="true" />
           )
         }
         {player.name}

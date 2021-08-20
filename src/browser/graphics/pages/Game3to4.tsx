@@ -62,7 +62,7 @@ const App = () => {
     <ReplicantProvider>
       <Container>
         <ProgramArea>
-          <Program />
+          <Program views={4} />
         </ProgramArea>
         <Player1Area>
           <Player index={0} />

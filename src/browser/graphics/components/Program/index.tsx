@@ -5,6 +5,7 @@ import { Nameplate } from '../../atoms/Nameplate';
 
 type Props = {
   horizontal?: boolean;
+  views: number;
 }
 
 const Container = styled.div`
@@ -39,15 +40,21 @@ const ConsoleLabel = styled.div`
 `;
 const Console =styled.div``;
 
+const CoopPlayer = styled.div`
+  height: 48px;
+`;
+
 const Commentator = styled.div`
   height: 48px;
 `;
 
-export const Program = ({horizontal}: Props) => {
+export const Program = ({horizontal, views}: Props) => {
   
   const replicant = useContext(ReplicantContext);
 
   const currentProgram = replicant.programs.find((program) => program.pk === replicant.surroundCurrentPk.current);
+
+  const coops = currentProgram?.players.slice(views) || [];
 
   return (
     <Container horizontal={horizontal}>
@@ -59,8 +66,15 @@ export const Program = ({horizontal}: Props) => {
             ))}
           </Name>
           {
-            currentProgram.commentators.length > 0 && (
+            coops.length + currentProgram.commentators.length > 0 && (
               <div>
+                {
+                  coops.map((player, index) => (
+                    <CoopPlayer>
+                      <Nameplate player={player} key={`coop${index}`} isPlayer />
+                    </CoopPlayer>
+                  ))
+                }
                 {
                   currentProgram.commentators.map((commentator, index) => (
                     <Commentator>
