@@ -30,30 +30,24 @@ export const programs = (nodecg: NodeCG): void => {
         spreadsheetId,
         ranges: [
           'schedules',
-          'entrants',
           'commentators',
         ]
       });
 
       const schedulesValue = dataResponse.data.valueRanges?.find(range => range.range?.includes('schedules'))?.values;
-      const entrantsValue = dataResponse.data.valueRanges?.find(range => range.range?.includes('entrants'))?.values;
       const commentatorsValue = dataResponse.data.valueRanges?.find(range => range.range?.includes('commentators'))?.values;
 
-      if (!schedulesValue || !entrantsValue || !commentatorsValue) {
+      if (!schedulesValue || !commentatorsValue) {
         throw new Error('Invalid spreadsheet values.');
       }
 
       const schedules = makeEntitiesFromDataValues(schedulesValue) as Schedule[];
-      const entrants = makeEntitiesFromDataValues(entrantsValue) as Entrant[];
       const commentators = makeEntitiesFromDataValues(commentatorsValue) as Commentator[];
 
       programsReplicant.value = schedules.map((schedule) => {
-        const players = [
-          { name: schedule.player },
-          ...entrants.filter(entrant => entrant.programPk === schedule.pk).map(entrant => {
-            return { name: entrant.name };
-          }),
-        ];
+        const players = schedule.player.split(',').map((name) => ({
+          name: name.trim(),
+        }));
         const programCommentators = commentators.filter(commentator => commentator.programPk === schedule.pk).map(commentator => {
           return { name: commentator.name };
         });
