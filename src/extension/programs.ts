@@ -31,23 +31,31 @@ export const programs = (nodecg: NodeCG): void => {
         ranges: [
           'schedules',
           'commentators',
+          'opponents',
         ]
       });
 
       const schedulesValue = dataResponse.data.valueRanges?.find(range => range.range?.includes('schedules'))?.values;
       const commentatorsValue = dataResponse.data.valueRanges?.find(range => range.range?.includes('commentators'))?.values;
+      const opponentsValue = dataResponse.data.valueRanges?.find(range => range.range?.includes('opponents'))?.values;
 
-      if (!schedulesValue || !commentatorsValue) {
+      if (!schedulesValue || !commentatorsValue || !opponentsValue) {
         throw new Error('Invalid spreadsheet values.');
       }
 
-      const schedules = makeEntitiesFromDataValues(schedulesValue) as Schedule[];
-      const commentators = makeEntitiesFromDataValues(commentatorsValue) as Commentator[];
+      const schedules = makeEntitiesFromDataValues<Schedule>(schedulesValue);
+      const commentators = makeEntitiesFromDataValues<Commentator>(commentatorsValue);
+      const entrants = makeEntitiesFromDataValues<Entrant>(opponentsValue);
 
       programsReplicant.value = schedules.map((schedule) => {
-        const players = schedule.player.split(',').map((name) => ({
-          name: name.trim(),
-        }));
+        const players = [
+          ... schedule.player.split(',').map((name) => ({
+            name: name.trim(),
+          })),
+          ... entrants.filter(entrant => entrant.programPk === schedule.pk).map(entrant => ({
+            name: entrant.name
+          })),
+        ];
         const programCommentators = commentators.filter(commentator => commentator.programPk === schedule.pk).map(commentator => {
           return { name: commentator.name };
         });

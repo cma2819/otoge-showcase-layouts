@@ -17,7 +17,7 @@ export const timeStringToSeconds = (time: string): number => {
   return (hours * 3600) + (minutes * 60) + seconds;
 }
 
-export const makeEntitiesFromDataValues = (data: any[][]): any[] => {
+export const makeEntitiesFromDataValues = <T>(data: any[][]): T[] => {
   const head = data[0];
 
   return data.filter((_, index) => index > 0).map((d) => {
