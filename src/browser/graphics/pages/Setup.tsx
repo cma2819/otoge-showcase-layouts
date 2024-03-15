@@ -9,6 +9,7 @@ import { Head } from '../atoms/Head';
 import { UpComing } from '../components/UpComing';
 import { ProgramDeck } from '../components/ProgramDeck';
 import { Spotify } from '../components/Spotify';
+import { Logo } from '../components/Logo';
 
 const Container = styled.div`
   position: fixed;
@@ -53,6 +54,18 @@ const SpotifyArea = styled.div`
   border-right-width: 0px;
 `;
 
+const SponsorArea = styled.div`
+  position: fixed;
+  top: 664px;
+  left: 1006px;
+  height: 240px;
+  width: 848px;
+  font-size: 24px;
+  padding: 16px 24px 16px 24px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 2px solid #f0f0f0;
+`;
+
 const App = () => {
   return (
     <ReplicantProvider>
@@ -69,6 +82,9 @@ const App = () => {
         <SpotifyArea>
           <Spotify />
         </SpotifyArea>
+        <SponsorArea>
+          <Logo />
+        </SponsorArea>
       </Container>
     </ReplicantProvider>
   );

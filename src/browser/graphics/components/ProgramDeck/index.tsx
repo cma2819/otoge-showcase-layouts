@@ -30,7 +30,7 @@ export const ProgramDeck = () => {
 
   const currentIndex = replicant.programs.findIndex((program) => program.pk === currentProgram?.pk);
   const decks = replicant.programs.filter((_, index) => {
-    return index >= currentIndex && index < currentIndex + 3;
+    return index >= currentIndex && index < currentIndex + 2;
   });
 
   const deckStartAfter = decks.map((_, index) => {

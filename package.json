@@ -28,7 +28,7 @@
     "schema-types:lib": "nodecg schema-types -o src/nodecg/generated/lib schemas/lib"
   },
   "nodecg": {
-    "compatibleRange": "^1.1.1",
+    "compatibleRange": "^1.1.1||>=2.0.0",
     "dashboardPanels": [
       {
         "name": "current",
@@ -75,6 +75,16 @@
         "file": "Omnibar.html",
         "width": 1920,
         "height": 50
+      }
+    ],
+    "assetCategories": [
+      {
+        "name": "sponsor-logo",
+        "title": "スポンサーロゴ",
+        "allowedTypes": [
+          "jpg",
+          "png"
+        ]
       }
     ]
   },

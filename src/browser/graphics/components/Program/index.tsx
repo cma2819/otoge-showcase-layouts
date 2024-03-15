@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ReplicantContext } from '../../../ReplicantProvider';
 import { Nameplate } from '../../atoms/Nameplate';
+import { Logo } from '../Logo';
 
 type Props = {
   horizontal?: boolean;
@@ -21,10 +22,13 @@ const Container = styled.div`
     ? (
       `
         grid-template-rows: 1fr;
-        grid-template-columns: auto auto;
+        grid-template-columns: 382px auto auto;
       `
     )
-    : 'grid-template-columns: 1fr;'
+    : `
+        grid-template-rows: 240px auto auto;
+        grid-template-columns: 1fr;
+      `
 }
 `;
 
@@ -33,11 +37,6 @@ const Name = styled.div`
   font-weight: bold;
 `;
 
-const ConsoleLabel = styled.div`
-  display: inline-block;
-  font-size: 24px;
-  padding: 0.2em 0.5em;
-`;
 const Console =styled.div``;
 
 const CoopPlayer = styled.div`
@@ -46,6 +45,11 @@ const CoopPlayer = styled.div`
 
 const Commentator = styled.div`
   height: 48px;
+`;
+
+const LogoArea = styled.div`
+  height: 198px;
+  padding: 16px 24px;
 `;
 
 export const Program = ({horizontal, views}: Props) => {
@@ -60,11 +64,22 @@ export const Program = ({horizontal, views}: Props) => {
     <Container horizontal={horizontal}>
       { currentProgram && (
         <React.Fragment>
-          <Name>
-            {currentProgram.name.split('\n').map((n, index) => (
-              <p style={{margin: 0}} key={`program${index}`}>{n}</p>
-            ))}
-          </Name>
+          <LogoArea>
+            <Logo />
+          </LogoArea>
+          <div>
+            <Name>
+              {currentProgram.name.split('\n').map((n, index) => (
+                <p style={{margin: 0}} key={`program${index}`}>{n}</p>
+              ))}
+            </Name>
+            <Console>
+              <div>
+                - {currentProgram.game}
+              </div>
+            </Console>
+
+          </div>
           {
             coops.length + currentProgram.commentators.length > 0 && (
               <div>
@@ -85,12 +100,6 @@ export const Program = ({horizontal, views}: Props) => {
               </div>
             )
           }
-          <Console>
-            <ConsoleLabel>Now Playing</ConsoleLabel>
-            <div>
-              {currentProgram.game}
-            </div>
-          </Console>
         </React.Fragment>
       )}
     </Container>
